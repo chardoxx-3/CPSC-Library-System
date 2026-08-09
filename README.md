@@ -1,60 +1,199 @@
-# CodeIgniter 4 Framework
+# 📚 Library Management System
 
-## What is CodeIgniter?
+A web-based **Library Management System** designed to streamline library operations by allowing administrators to manage books, members, borrowing transactions, and fines, while members can browse available books, borrow items, and track their borrowing history.
 
-CodeIgniter is a PHP full-stack web framework that is light, fast, flexible and secure.
-More information can be found at the [official site](https://codeigniter.com).
+## 🚀 Project Overview
 
-This repository holds the distributable version of the framework.
-It has been built from the
-[development repository](https://github.com/codeigniter4/CodeIgniter4).
+The application is built with **PHP**, **CodeIgniter 4**, and **MySQL**, following the MVC architecture. It provides separate experiences for **Administrators** and **Members**, with each role having access to features relevant to their responsibilities.
 
-More information about the plans for version 4 can be found in [CodeIgniter 4](https://forum.codeigniter.com/forumdisplay.php?fid=28) on the forums.
+## 👥 User Roles
 
-You can read the [user guide](https://codeigniter.com/user_guide/)
-corresponding to the latest version of the framework.
+### 1. Administrator
 
-## Important Change with index.php
+Administrators can:
 
-`index.php` is no longer in the root of the project! It has been moved inside the *public* folder,
-for better security and separation of components.
+* View an overview through the dashboard.
+* Add, edit, and manage books.
+* Manage member accounts.
+* Process book borrowings and returns.
+* Manage fines and payments.
+* View rental and revenue reports.
+* Print reports.
 
-This means that you should configure your web server to "point" to your project's *public* folder, and
-not to the project root. A better practice would be to configure a virtual host to point there. A poor practice would be to point your web server to the project root and expect to enter *public/...*, as the rest of your logic and the
-framework are exposed.
+### 2. Member
 
-**Please** read the user guide for a better explanation of how CI4 works!
+Members can:
 
-## Repository Management
+* View available books.
+* Register and manage their account profile.
+* View their borrowing history.
+* Track active borrowings and due dates.
 
-We use GitHub issues, in our main repository, to track **BUGS** and to track approved **DEVELOPMENT** work packages.
-We use our [forum](http://forum.codeigniter.com) to provide SUPPORT and to discuss
-FEATURE REQUESTS.
+## 📖 Key Features
 
-This repository is a "distribution" one, built by our release preparation script.
-Problems with it can be raised on our forum, or as issues in the main repository.
+| **Feature**               | **Description**                                                         |
+| ------------------------- | ----------------------------------------------------------------------- |
+| **Book Management**       | Add, edit, delete, and manage book information, images, and availability. |
+| **Member Management**     | Manage registered member accounts and personal information.             |
+| **Borrowing System**      | Create and manage book borrowing transactions with 7-day due dates.     |
+| **Return Processing**     | Process book returns and automatically calculate overdue fines.         |
+| **Fine Management**       | Record and manage late return fines at a configurable daily rate.       |
+| **Dashboard**             | Provides an overview of books, members, borrowings, and overdue items.  |
+| **Reports**               | View borrowed books, available inventory, and overdue items with print. |
+| **Authentication**        | Secure login and registration with role-based access.                   |
 
-## Contributing
+## 🏗️ System Architecture
 
-We welcome contributions from the community.
+The project follows the **Model-View-Controller (MVC)** architecture provided by CodeIgniter 4.
 
-Please read the [*Contributing to CodeIgniter*](https://github.com/codeigniter4/CodeIgniter4/blob/develop/CONTRIBUTING.md) section in the development repository.
+* **Controllers** – Handle application logic and user requests.
+* **Models** – Manage database operations and business data.
+* **Views** – Provide the user interface for administrators and members.
+* **Routes** – Define how users access different system features.
 
-## Server Requirements
+## 🗄️ Database
 
-PHP version 8.1 or higher is required, with the following extensions installed:
+The system uses **MySQL/MariaDB** to manage its core data, including:
 
-- [intl](http://php.net/manual/en/intl.requirements.php)
-- [mbstring](http://php.net/manual/en/mbstring.installation.php)
+* Users
+* Books
+* Members
+* Transactions
+* Fines
 
-> [!WARNING]
-> - The end of life date for PHP 7.4 was November 28, 2022.
-> - The end of life date for PHP 8.0 was November 26, 2023.
-> - If you are still using PHP 7.4 or 8.0, you should upgrade immediately.
-> - The end of life date for PHP 8.1 will be December 31, 2025.
+## 🔐 Demo Credentials
 
-Additionally, make sure that the following extensions are enabled in your PHP:
+Use the following account to access the administrator features:
 
-- json (enabled by default - don't turn it off)
-- [mysqlnd](http://php.net/manual/en/mysqlnd.install.php) if you plan to use MySQL
-- [libcurl](http://php.net/manual/en/curl.requirements.php) if you plan to use the HTTP\CURLRequest library
+| **Account**  | **Credentials** |
+| ------------ | --------------- |
+| **Username** | `admin`         |
+| **Password** | Seeded in `library_db.sql` |
+
+> **Note:** These credentials are intended for local/demo use only. The default admin account is pre-seeded in the database file.
+
+## 🛠️ Technologies Used
+
+* **PHP**
+* **CodeIgniter 4**
+* **MySQL / MariaDB**
+* **HTML**
+* **CSS**
+* **JavaScript**
+* **Composer**
+
+## 💻 How to Install & Run
+
+### 1. Install the Requirements
+
+Before running the project, install:
+
+* **PHP 8.1 or higher**
+* **Composer**
+* **MySQL / MariaDB**
+* **XAMPP** or another local PHP development environment
+
+### 2. Download the Project
+
+Clone the repository:
+
+```bash
+git clone https://github.com/your-repo/library-management-system.git
+```
+
+Then enter the project directory:
+
+```bash
+cd library-management-system
+```
+
+You can also download the repository as a **ZIP** and extract it to your local development folder.
+
+### 3. Install CodeIgniter Dependencies
+
+Inside the project folder, run:
+
+```bash
+composer install
+```
+
+This installs the PHP dependencies required by the CodeIgniter 4 application.
+
+### 4. Configure the Environment
+
+Copy the example environment file:
+
+```bash
+copy env .env
+```
+
+Then open `.env` and configure your database connection.
+
+Example:
+
+```env
+database.default.hostname = localhost
+database.default.database = library_db
+database.default.username = root
+database.default.password =
+database.default.DBDriver = MySQLi
+database.default.port = 3306
+```
+
+Adjust the database name, username, and password according to your local MySQL configuration.
+
+### 5. Create the Database
+
+Open **phpMyAdmin** or MySQL and create a database for the project.
+
+For example:
+
+```text
+library_db
+```
+
+Import the SQL database file included in the project:
+
+```text
+library_db.sql
+```
+
+This will create the required tables and sample data.
+
+### 6. Start the CodeIgniter Development Server
+
+From the project directory, run:
+
+```bash
+php spark serve
+```
+
+The application will normally be available at:
+
+```text
+http://localhost:8080
+```
+
+Open the address in your browser.
+
+### 7. Login
+
+Use the demo administrator account:
+
+```text
+Username: admin
+Password: [see library_db.sql]
+```
+
+## 🔄 Borrowing Workflow
+
+**Browse Books → Check Availability → Select Member → Borrow Book → Return Book → Pay Fines (if overdue)**
+
+## 🎯 Project Purpose
+
+This project was developed to demonstrate practical skills in **web development, database management, MVC architecture, CRUD operations, authentication, library management, transaction processing, and reporting**.
+
+## 📸 System Preview
+
+### Login
+![Login](screenshots/login.png)
